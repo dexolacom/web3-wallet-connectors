@@ -1,9 +1,9 @@
 import React from 'react';
-import {useAccount, useConnect} from 'wagmi';
+import { useConnect } from 'wagmi';
 
 
 const ConnectButton = () => {
-  const { connect, connectors, pendingConnector} = useConnect()
+  const { connect, connectors } = useConnect()
 
   return (
     <div style={{display: 'flex', gap: '20px'}}>
@@ -14,11 +14,6 @@ const ConnectButton = () => {
           onClick={() => connect({ connector })}
         >
           {connector.name}
-          {/*{}*/}
-          {/*{!connector.ready && ' (unsupported)'}*/}
-          {/*{isLoading &&*/}
-          {/*connector.id === pendingConnector?.id &&*/}
-          {/*' (connecting)'}*/}
         </button>
       ))}
 

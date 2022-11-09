@@ -6,12 +6,9 @@ import { stringTrim } from './constants/utils';
 
 function App() {
   const { address } = useAccount()
-  const { data } = useBalance({
-    addressOrName: address
-  })
-  const {chain} = useNetwork()
-  const {chains, switchNetwork } = useSwitchNetwork()
-  console.log(chains)
+  const { data } = useBalance({addressOrName: address})
+  const { chain } = useNetwork()
+  const { switchNetwork } = useSwitchNetwork()
 
   return (
     <div className='app-wrapper'>
@@ -30,7 +27,6 @@ function App() {
           <button onClick={() => switchNetwork?.(97)}>Binance test</button>
         </div>
       </div>
-      {/*@ts-ignore*/}
     </div>
   )
 }
