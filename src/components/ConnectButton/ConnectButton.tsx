@@ -1,11 +1,12 @@
 import React from 'react';
-import { useConnect } from 'wagmi';
+import {useAccount, useConnect} from 'wagmi';
 
 
 const ConnectButton = () => {
-  const { connect, connectors, error, isLoading, pendingConnector } = useConnect()
+  const { connect, connectors, pendingConnector} = useConnect()
+
   return (
-    <div>
+    <div style={{display: 'flex', gap: '20px'}}>
       {connectors.map((connector) => (
         <button
           disabled={!connector.ready}
@@ -13,14 +14,15 @@ const ConnectButton = () => {
           onClick={() => connect({ connector })}
         >
           {connector.name}
-          {!connector.ready && ' (unsupported)'}
-          {isLoading &&
-          connector.id === pendingConnector?.id &&
-          ' (connecting)'}
+          {/*{}*/}
+          {/*{!connector.ready && ' (unsupported)'}*/}
+          {/*{isLoading &&*/}
+          {/*connector.id === pendingConnector?.id &&*/}
+          {/*' (connecting)'}*/}
         </button>
       ))}
 
-      {error && <div>{error.message}</div>}
+      {/*{error && <div style={{color: 'crimson', position: 'absolute', top: '90px'}}>{error.message}</div>}*/}
     </div>
   );
 };

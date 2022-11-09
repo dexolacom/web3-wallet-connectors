@@ -1,14 +1,13 @@
 import {chain, configureChains, createClient, defaultChains} from 'wagmi';
-import {binanceChain} from './chains';
+import {binanceChain, binanceTestChain} from './chains';
 import {publicProvider} from 'wagmi/providers/public';
 import {MetaMaskConnector} from 'wagmi/connectors/metaMask';
 import {CoinbaseWalletConnector} from 'wagmi/connectors/coinbaseWallet';
 import {WalletConnectConnector} from 'wagmi/connectors/walletConnect';
 import {InjectedConnector} from 'wagmi/connectors/injected';
 
-const { chains, provider, webSocketProvider } = configureChains(
-  // [binanceChain, chain.goerli, chain.mainnet],
-  defaultChains,
+const { chains, provider } = configureChains(
+  [binanceChain, binanceTestChain, chain.goerli, chain.mainnet],
   [publicProvider()],
   // [
   //   jsonRpcProvider({
@@ -35,17 +34,17 @@ const client = createClient({
         qrcode: true,
       },
     }),
-    new InjectedConnector({
-      chains,
-      options: {
-        name: 'Injected',
-        shimDisconnect: true,
-      },
-    }),
+    // new InjectedConnector({
+    //   chains,
+    //   options: {
+    //     name: 'Injected',
+    //     shimDisconnect: true,
+    //   },
+    // }),
   ],
   autoConnect: true,
   provider,
-  webSocketProvider
+  // webSocketProvider
 });
 
 export default client
