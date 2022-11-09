@@ -1,32 +1,31 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
+import { Web3Modal, useAccount, useBalance } from '@web3modal/react'
 import './App.css'
+import ConnectButton from './components/ConnectButton/ConnectButton';
+
+const config = {
+  projectId: '0fd4e96476f7e05185797b376aa28781',
+  theme: 'dark',
+  accentColor: 'teal',
+  ethereum: {
+    appName: 'web3Modal',
+    autoConnect: true
+  }
+}
+
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const { account } = useAccount()
+  const { data } = useBalance({addressOrName: account?.address})
+  console.log(account)
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className='app-wrapper'>
+      <div className='app-content'>
+        <ConnectButton/>
+        <h3>Account: <span className='info'>{account?.address}</span></h3>
+        <h3>Balance: <span className='info'>{data ? data?.formatted : '0.00'}</span></h3>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      {/*@ts-ignore*/}
+      <Web3Modal config={config} />
     </div>
   )
 }
