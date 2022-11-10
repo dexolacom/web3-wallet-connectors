@@ -1,11 +1,13 @@
 import React from 'react';
 import {useAccount, useConnect, useDisconnect} from 'wagmi';
+import useCheckIsMobile from '../../hooks/useCheckIsMobile';
 
 
 const ConnectButton = () => {
   const { connector: activeConnector } = useAccount()
   const { connect, connectors } = useConnect()
   const { disconnect } = useDisconnect()
+  const { isMobile } = useCheckIsMobile()
 
   const MetaMaskConnector = connectors[0]
   const CoinbaseWalletConnector = connectors[1]
@@ -23,12 +25,17 @@ const ConnectButton = () => {
       {/*  </button>*/}
       {/*))}*/}
 
-      <button disabled={activeConnector?.name === 'MetaMask'} onClick={() => connect({connector: MetaMaskConnector})}>
-        {activeConnector?.name === 'MetaMask'
-          ? <span>Connected</span>
-          : 'Metamask'
-        }
-      </button>
+      {isMobile
+        ? <a href='https://metamask.app.link/dapp/super-crepe-03b051.netlify.app/'>Open metamask app</a>
+        : <button disabled={activeConnector?.name === 'MetaMask'} onClick={() => connect({connector: MetaMaskConnector})}>
+          {activeConnector?.name === 'MetaMask'
+            ? <span>Connected</span>
+            : 'Metamask'
+          }
+        </button>
+      }
+
+
       <button disabled={activeConnector?.name === 'Coinbase Wallet'} onClick={() => connect({connector: CoinbaseWalletConnector})}>
         {activeConnector?.name === 'Coinbase Wallet'
           ? <span>Connected</span>
