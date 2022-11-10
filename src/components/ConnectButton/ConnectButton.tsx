@@ -26,7 +26,7 @@ const ConnectButton = () => {
       {/*))}*/}
 
       {isMobile
-        ? <a href='https://metamask.app.link/dapp/super-crepe-03b051.netlify.app/'>Open metamask app</a>
+        ? <a href='https://metamask.app.link/dapp/super-crepe-03b051.netlify.app/'>Metamask</a>
         : <button disabled={activeConnector?.name === 'MetaMask'} onClick={() => connect({connector: MetaMaskConnector})}>
           {activeConnector?.name === 'MetaMask'
             ? <span>Connected</span>
