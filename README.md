@@ -9,7 +9,7 @@ npm:
 
 ## Quick Start
 
-####Steps:
+#### Steps:
 - Configure client
 - Wrap app with WagmiConfig
 - Add logic for wallet connection to ui
