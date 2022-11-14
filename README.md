@@ -107,3 +107,41 @@ ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   </WagmiConfig>
 )
 ```
+
+## Usage
+
+> connectButtons.ts 🔵
+
+```typescript jsx
+import {useConnect, useDisconnect} from 'wagmi';
+
+const ConnectButton = () => {
+  const { connect, connectors } = useConnect()
+  const { disconnect } = useDisconnect()
+
+  const MetaMaskConnector = connectors[0]
+  const CoinbaseWalletConnector = connectors[1]
+  const WalletConnectConnector = connectors[2]
+
+  return (
+    <div>
+      <button onClick={() => connect({connector: MetaMaskConnector})}>
+        Metamask
+      </button>
+      <button onClick={() => connect({connector: CoinbaseWalletConnector})}>
+        Coinbase
+      </button>
+      <button onClick={() => connect({connector: WalletConnectConnector})}>
+        WalletConnect
+      </button>
+      <button onClick={() => disconnect()}>
+        Disconnect
+      </button>
+    </div>
+  );
+};
+
+export default ConnectButton;
+```
+
+For more information on hooks, click here https://wagmi.sh/docs/hooks/useAccount
