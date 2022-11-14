@@ -1,4 +1,4 @@
-# web3ModalTest
+# Quick start
 For run localhost server ```yarn dev```
 
 Deploy: https://super-crepe-03b051.netlify.app/
