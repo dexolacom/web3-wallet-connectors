@@ -36,7 +36,6 @@ const client = createClient({
   ],
   autoConnect: true,
   provider,
-  // webSocketProvider
 });
 
 export default client
