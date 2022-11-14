@@ -21,7 +21,7 @@ First, configure your desired chains to be used by wagmi, and the providers you 
 > config.ts 🔵
 
 ```typescript
-import { configureChains, chain } from 'wagmi'
+import { configureChains, chain, createClient } from 'wagmi'
 import { publicProvider } from 'wagmi/providers/public'
  
 const { chains, provider } = configureChains(
@@ -66,7 +66,6 @@ Next, create a wagmi Client instance using createClient
 import {MetaMaskConnector} from 'wagmi/connectors/metaMask';
 import {CoinbaseWalletConnector} from 'wagmi/connectors/coinbaseWallet';
 import {WalletConnectConnector} from 'wagmi/connectors/walletConnect';
-import { configureChains, chain, createClient } from 'wagmi'
 
 
 const client = createClient({
