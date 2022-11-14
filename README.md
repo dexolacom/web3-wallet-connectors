@@ -143,4 +143,16 @@ const ConnectButton = () => {
 export default ConnectButton;
 ```
 
+### Possible errors with create-react-app:
+<span style="color: crimson"> - Buffer is not defined </span>
+
+To fix this add
+> index.ts 🔵
+
+```typescript 
+;(window as any)['global'] = window
+global.Buffer = global.Buffer || require('buffer').Buffer
+```
+
+### Additional Info
 For more information on hooks, click here https://wagmi.sh/docs/hooks/useAccount
