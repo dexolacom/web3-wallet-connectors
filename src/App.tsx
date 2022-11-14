@@ -1,50 +1,32 @@
-import { Web3Modal, useAccount, useBalance, useNetwork, useSwitchNetwork } from '@web3modal/react'
-import { chains, providers } from '@web3modal/ethereum';
 import './App.css'
 import ConnectButton from './components/ConnectButton/ConnectButton';
-
-const config = {
-  projectId: '0fd4e96476f7e05185797b376aa28781',
-  theme: 'dark',
-  accentColor: 'teal',
-  ethereum: {
-    appName: 'web3Modal',
-    chains: [
-      chains.mainnet,
-      chains.goerli,
-      chains.binanceSmartChain,
-      chains.binanceSmartChainTestnet
-    ],
-    providers: [
-      providers.walletConnectProvider({
-        projectId: '0fd4e96476f7e05185797b376aa28781'
-      })
-    ],
-    autoConnect: true
-  }
-}
+import { useAccount, useBalance, useNetwork, useSwitchNetwork } from 'wagmi';
+import { stringTrim } from './constants/utils';
 
 
 function App() {
-  const { account } = useAccount()
-  const { data } = useBalance({addressOrName: account?.address})
-  const { error, isLoading,  switchNetwork } = useSwitchNetwork()
+  const { address } = useAccount()
+  const { data } = useBalance({addressOrName: address})
+  const { chain } = useNetwork()
+  const { switchNetwork } = useSwitchNetwork()
 
   return (
     <div className='app-wrapper'>
       <div className='app-content'>
         <ConnectButton/>
-        <h3>Account: <span className='info'>{account?.address}</span></h3>
-        <h3>Balance: <span className='info'>{data ? data?.formatted : '0.00'}</span></h3>
+        <div className='info-container'>
+          <h3>Account: <span className='info'>{address ? stringTrim(address, 10) : '----'}</span></h3>
+          <h3>Balance: <span className='info'>{data ? Number(data?.formatted).toFixed(2) : '0.00'}</span></h3>
+          <h3>Connected to: <span className='info'>{chain?.name ?? 'unknown'}</span></h3>
+        </div>
+
         <div className='buttons-container'>
-          <button>Ethereum</button>
-          <button>Goerli</button>
-          <button>Binance main</button>
-          <button>Binance test</button>
+          <button disabled={chain?.id === 1} onClick={() => switchNetwork?.(1)}>Ethereum</button>
+          <button disabled={chain?.id === 5} onClick={() => switchNetwork?.(5)}>Goerli</button>
+          <button disabled={chain?.id === 56} onClick={() => switchNetwork?.(56)}>Binance main</button>
+          <button disabled={chain?.id === 97} onClick={() => switchNetwork?.(97)}>Binance test</button>
         </div>
       </div>
-      {/*@ts-ignore*/}
-      <Web3Modal config={config} />
     </div>
   )
 }
