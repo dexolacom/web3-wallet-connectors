@@ -1,5 +1,5 @@
 ## Installation
-Example: https://super-crepe-03b051.netlify.app/
+Example: https://dainty-cuchufli-432458.netlify.app
 
 To run example code: ```yarn dev```
 
