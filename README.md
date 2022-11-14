@@ -144,9 +144,7 @@ export default ConnectButton;
 ```
 
 ### Possible errors with create-react-app:
-```diff
-   -Buffer is not defined
-```
+<span style="color: crimson"> - Buffer is not defined </span>
 
 To fix this add
 > index.ts 🔵
