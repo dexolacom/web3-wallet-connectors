@@ -145,7 +145,7 @@ export default ConnectButton;
 
 ### Possible errors with create-react-app:
 ```diff
-   - Buffer is not defined
+   -Buffer is not defined
 ```
 
 To fix this add
