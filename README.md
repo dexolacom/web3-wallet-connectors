@@ -1,4 +1,10 @@
-# Quick start
-For run localhost server ```yarn dev```
+## Instalation
+Example: https://super-crepe-03b051.netlify.app/
 
-Deploy: https://super-crepe-03b051.netlify.app/
+yarn: 
+```yarn add wagmi ethers```
+
+npm:
+```npm i wagmi ethers```
+
+
