@@ -35,7 +35,6 @@ const ConnectButton = () => {
         </button>
       }
 
-
       <button disabled={activeConnector?.name === 'Coinbase Wallet'} onClick={() => connect({connector: CoinbaseWalletConnector})}>
         {activeConnector?.name === 'Coinbase Wallet'
           ? <span>Connected</span>

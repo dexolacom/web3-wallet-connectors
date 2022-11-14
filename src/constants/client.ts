@@ -1,4 +1,4 @@
-import {chain, configureChains, createClient, defaultChains} from 'wagmi';
+import {chain, configureChains, createClient} from 'wagmi';
 import {binanceChain, binanceTestChain} from './chains';
 import {publicProvider} from 'wagmi/providers/public';
 import {MetaMaskConnector} from 'wagmi/connectors/metaMask';
@@ -9,14 +9,6 @@ import {InjectedConnector} from 'wagmi/connectors/injected';
 const { chains, provider } = configureChains(
   [binanceChain, binanceTestChain, chain.goerli, chain.mainnet],
   [publicProvider()],
-  // [
-  //   jsonRpcProvider({
-  //     rpc: (chain) => {
-  //       if (chain.id !== binanceChain.id) return null;
-  //       return { http: chain.rpcUrls.default };
-  //     },
-  //   }),
-  // ]
 );
 
 const client = createClient({
