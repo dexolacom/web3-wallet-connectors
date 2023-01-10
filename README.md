@@ -58,6 +58,8 @@ export const binanceChain: Chain = {
 };
 ```
 
+also you can see a list of available networks in 'import {} from wagmi/chains'
+
 ### 2.Create a wagmi client
 
 Next, create a wagmi Client instance using createClient
