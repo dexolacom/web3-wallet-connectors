@@ -83,7 +83,7 @@ const client = createClient({
     new CoinbaseWalletConnector({
       chains,
       options: {
-        appName: 'bubblegum',
+        appName: 'your app name',
       },
     }),
     new WalletConnectLegacyConnector({
