@@ -5,7 +5,7 @@ To run example code: ```yarn dev```
 
 ----------------------------------
 
-last verified working version 0.12.8✅
+last verified working version $${\color{red}0.12.8}$$ ✅
 
 yarn: 
 ```yarn add wagmi ethers@^5```
