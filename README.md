@@ -3,6 +3,10 @@ Example: https://dainty-cuchufli-432458.netlify.app
 
 To run example code: ```yarn dev```
 
+----------------------------------
+
+last verified working version <span style="color: green">0.12.8</span>
+
 yarn: 
 ```yarn add wagmi ethers@^5```
 
