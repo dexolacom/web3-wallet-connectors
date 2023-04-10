@@ -1,13 +1,13 @@
-import {chain, configureChains, createClient} from 'wagmi';
-import {binanceChain, binanceTestChain} from './chains';
-import {publicProvider} from 'wagmi/providers/public';
-import {MetaMaskConnector} from 'wagmi/connectors/metaMask';
-import {CoinbaseWalletConnector} from 'wagmi/connectors/coinbaseWallet';
-import {WalletConnectConnector} from 'wagmi/connectors/walletConnect';
-import {InjectedConnector} from 'wagmi/connectors/injected';
+import { createClient, configureChains } from 'wagmi';
+import { publicProvider } from 'wagmi/providers/public'
+import { bscTestnet } from 'wagmi/chains'
 
-const { chains, provider } = configureChains(
-  [binanceChain, binanceTestChain, chain.goerli, chain.mainnet],
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLegacy'
+
+const { chains, provider, webSocketProvider } = configureChains(
+  [bscTestnet],
   [publicProvider()],
 );
 
@@ -17,25 +17,21 @@ const client = createClient({
     new CoinbaseWalletConnector({
       chains,
       options: {
-        appName: 'wagmi',
+        appName: 'bubblegum',
       },
     }),
-    new WalletConnectConnector({
+    new WalletConnectLegacyConnector({
       chains,
       options: {
-        qrcode: true,
+        qrcodeModalOptions: {
+          desktopLinks: [],
+        }
       },
     }),
-    // new InjectedConnector({
-    //   chains,
-    //   options: {
-    //     name: 'Injected',
-    //     shimDisconnect: true,
-    //   },
-    // }),
   ],
-  autoConnect: true,
   provider,
-});
+  webSocketProvider,
+  autoConnect: true
+})
 
 export default client
