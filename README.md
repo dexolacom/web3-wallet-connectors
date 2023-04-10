@@ -4,10 +4,10 @@ Example: https://dainty-cuchufli-432458.netlify.app
 To run example code: ```yarn dev```
 
 yarn: 
-```yarn add wagmi ethers```
+```yarn add wagmi ethers@^5```
 
 npm:
-```npm i wagmi ethers```
+```npm i wagmi ethers@^5```
 
 ## Quick Start
 
