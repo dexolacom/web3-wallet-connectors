@@ -23,16 +23,17 @@ First, configure your desired chains to be used by wagmi, and the providers you 
 > config.ts 🔵
 
 ```typescript
-import { configureChains, chain, createClient } from 'wagmi'
+import { createClient, configureChains } from 'wagmi';
 import { publicProvider } from 'wagmi/providers/public'
+import { bscTestnet, bsc } from 'wagmi/chains'
  
-const { chains, provider } = configureChains(
-  [binanceChain, binanceTestChain, chain.goerli, chain.mainnet],
+const { chains, provider, webSocketProvider } = configureChains(
+  [bscTestnet, bsc],
   [publicProvider()],
-)
+);
 ```
 
-In this example, the custom networks for binance are added. If you want to add a network, it should look like this:
+If you want to add a custom network, it should look like this:
 
 ```typescript
 export const binanceChain: Chain = {
@@ -67,9 +68,9 @@ Next, create a wagmi Client instance using createClient
 > config.ts 🔵
 
 ```typescript
-import {MetaMaskConnector} from 'wagmi/connectors/metaMask';
-import {CoinbaseWalletConnector} from 'wagmi/connectors/coinbaseWallet';
-import {WalletConnectConnector} from 'wagmi/connectors/walletConnect';
+import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet'
+import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
+import { WalletConnectLegacyConnector } from 'wagmi/connectors/walletConnectLegacy'
 
 
 const client = createClient({
@@ -78,19 +79,22 @@ const client = createClient({
     new CoinbaseWalletConnector({
       chains,
       options: {
-        appName: 'your cool project',
+        appName: 'bubblegum',
       },
     }),
-    new WalletConnectConnector({
+    new WalletConnectLegacyConnector({
       chains,
       options: {
-        qrcode: true,
+         qrcodeModalOptions: {
+           desktopLinks: [],
+         }
       },
     }),
   ],
-  autoConnect: true,
   provider,
-});
+  webSocketProvider,
+  autoConnect: true
+})
 
 export default client
 ```
